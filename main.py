@@ -18,7 +18,6 @@ class main():
         self.marker_style  = list(ft.marker_style.keys())
         self.root          = Tk()
         self.root.title("Graficar")
-
         #BARRA DE OPCIONES
         self.bar_menu = Menu(self.root)
         self.root.config(menu = self.bar_menu)
@@ -27,7 +26,7 @@ class main():
         #Archivo
         self.file_menu = Menu(self.bar_menu, tearoff = 0)
         #opciones del menu archivo
-        self.file_menu.add_command(label = "Nuevo")
+        self.file_menu.add_command(label = "Nuevo", command=self.new_window)
         self.file_menu.add_command(label = "Guardar")
         self.file_menu.add_command(label = "Salir")
 
@@ -251,7 +250,8 @@ class main():
         else:
             print("NO SE SELECCIONO NINGUN ARCHIVO")
         
-
+    def new_window(self):
+        run(["cmd","/c","start main.py"])
     def graph(self):
 
         
@@ -274,6 +274,6 @@ class main():
                    )
         newGr.get_data()
         newGr.draw()
-        
+
 if __name__ == '__main__':
     main()

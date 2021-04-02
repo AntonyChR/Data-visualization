@@ -12,12 +12,15 @@ import Modules.Features as ft
 class main():
     def __init__(self):
         # variable de entorno
-        self.path_file     = ""
+        self.path_file     = None
         self.title_columns = ["NuHayNada"]
         self.line_styles   = list(ft.line_style.keys())
         self.marker_style  = list(ft.marker_style.keys())
+
+        #Window container
         self.root          = Tk()
         self.root.title("Graficar")
+
         #BARRA DE OPCIONES
         self.bar_menu = Menu(self.root)
         self.root.config(menu = self.bar_menu)
@@ -39,8 +42,6 @@ class main():
         self.graph_prop_menu = Menu(self.bar_menu, tearoff = 0)
         self.graph_prop_menu.add_command(label = "Fuente")
         self.graph_prop_menu.add_command(label = "Tamaño de fuente")
-
-        
 
         self.bar_menu.add_cascade(label ="Archivo", menu = self.file_menu)
         self.bar_menu.add_cascade(label ="Editar" , menu = self.edit_menu)
@@ -136,6 +137,7 @@ class main():
         self.domain_box.config(justify = CENTER)
         self.domain_box.grid(row = 5, column = 1, pady = 5)
 
+        #Legenda de la grafica
         self.legend_label = Label(self.frame_ecuation, text = "Legenda")
         self.legend_label.grid(row = 6, column = 0)
 
@@ -252,6 +254,8 @@ class main():
         
     def new_window(self):
         run(["cmd","/c","start main.py"])
+    def clear(self):
+        pass
     def graph(self):
 
         

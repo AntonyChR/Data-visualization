@@ -27,8 +27,8 @@ class graph():
         self.marker     = ft.marker_style[marker_] if marker_ != "" else "o"
         self.font       = {"fontname": "Times New Roman", "size": 14}
 
-        self.x = 1
-        self.y = 1
+        self.x = None
+        self.y = None
 
 
     def get_data(self):

@@ -13,7 +13,7 @@ class main():
     def __init__(self):
         # variable de entorno
         self.path_file     = None
-        self.title_columns = ["NuHayNada"]
+        self.title_columns = ["NuHayNada xd"]
         self.line_styles   = list(ft.line_style.keys())
         self.marker_style  = list(ft.marker_style.keys())
 
@@ -203,7 +203,7 @@ class main():
         self.size_label.grid(row = 1, column = 2, pady = 5, padx = 5)
         # Caja de entrada para el tamaño de los puntos
         self.size_var = DoubleVar()
-        self.size_var.set(3.0)
+        self.size_var.set(5.0)
         self.size_point = Spinbox(self.configuration_graph_data, from_=0.1, increment=0.1,to = 5.0, width = 7, textvariable = str(self.size_var))
         self.size_point.config(justify = CENTER)
 
@@ -217,6 +217,7 @@ class main():
         
 
         self.root.mainloop()
+        
     def search_file(self):
 
         self.path_file = filedialog.askopenfilename(initialdir="C://Users/USUARIO/Desktop", title="Seleccionar archivo de datos", 
@@ -250,7 +251,7 @@ class main():
             self.x_data['values'] = self.title_columns
             self.y_data['values'] = self.title_columns
         else:
-            print("NO SE SELECCIONO NINGUN ARCHIVO")
+            print("file not selected")
         
     def new_window(self):
         run(["cmd","/c","start main.py"])

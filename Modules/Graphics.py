@@ -42,10 +42,10 @@ class graph():
         self.y = list(data[self.title_y])
 
     def insert(self):
-        funciones = ["exp", "ln", "sin", "cos",
+        functions = ["exp", "ln", "sin", "cos",
                      "tan", "arctan", "arcos", "sec", "arcsin"]
 
-        for fun in funciones:
+        for fun in functions:
             i = self.ecuation.find(fun)
             if i != -1:
                 self.ecuation = self.ecuation[:i] + "np." + self.ecuation[i:]

@@ -1,4 +1,5 @@
-##graphical interface with tkinter to visualize data with matplotlib
+Graphical interface with tkinter to visualize data with matplotlib
+
 This is a simple graphical interface using Python for data visualization with tkinter and matplotlib.
 To install the dependencies run:
 `pip install -r requirements.txt`

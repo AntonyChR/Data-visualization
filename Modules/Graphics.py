@@ -44,7 +44,6 @@ class graph():
     def insert(self):
         functions = ["exp", "ln", "sin", "cos",
                      "tan", "arctan", "arcos", "sec", "arcsin"]
-
         for fun in functions:
             i = self.ecuation.find(fun)
             if i != -1:
@@ -61,6 +60,7 @@ class graph():
 
             dom  = np.linspace(float(a), float(b), num = 100)
             ran  = [eval(self.ecuation) for x in dom]
+            #ran  = list(map(eval(self.ecuation), dom))
             plt.plot(dom, ran, label=self.legend_ec)
             
 

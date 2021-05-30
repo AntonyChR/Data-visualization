@@ -5,10 +5,23 @@ import Modules.Features as ft
 
 
 class graph():
-
-    def __init__(self, path,    title, xtitle,    ytitle,   rej, col,
-                 line_style, size, ecuation, domain, legend_ec, color_ec, title_x, 
-                 title_y, marker_):
+#replace this for **kargs
+    def __init__(self, 
+                path,    
+                title, 
+                xtitle,    
+                ytitle,   
+                rej, 
+                col,
+                line_style, 
+                size, 
+                ecuation, 
+                domain, 
+                legend_ec, 
+                color_ec, 
+                title_x, 
+                title_y, 
+                marker_):
 
         self.path       = path
         self.title      = title
@@ -32,7 +45,6 @@ class graph():
 
 
     def get_data(self):
-        #v: csv else excel
         if self.path[-1] == "v":
             data = pd.read_csv(self.path)
         else:

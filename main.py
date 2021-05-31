@@ -21,44 +21,24 @@ class main():
         # Window container
         self.root = Tk()
         self.root.title("XD")
-        '''
-        # Options var
-        self.bar_menu = Menu(self.root)
-        self.root.config(menu = self.bar_menu)
-        self.root.resizable(False,False)
-
-        # File
-        self.file_menu = Menu(self.bar_menu, tearoff = 0)
-        # Menu options
-        self.file_menu.add_command(label = "New", command=self.new_window)
-        self.file_menu.add_command(label = "Save")
-        self.file_menu.add_command(label = "Quit")
-
-        # edit
-        self.edit_menu = Menu(self.bar_menu, tearoff = 0)
-
-        self.edit_menu.add_command(label = "Clear")
-
-
-        self.graph_prop_menu = Menu(self.bar_menu, tearoff = 0)
-        self.graph_prop_menu.add_command(label = "Font")
-        self.graph_prop_menu.add_command(label = "Font size")
-
-        self.bar_menu.add_cascade(label ="File", menu = self.file_menu)
-        self.bar_menu.add_cascade(label ="Edit" , menu = self.edit_menu)
-        self.bar_menu.add_cascade(label ="Plot" , menu = self.graph_prop_menu)
-        '''
+        self.root.geometry("500x700")
         #Contains the graph configuration that user set
-        self.config_graph_frame =Frame(self.root)
-        self.config_graph_frame.pack(pady=5) 
+        self.config_graph_frame =Frame(self.root, borderwidth = 1)
+        self.config_graph_frame.pack(side = LEFT,pady=5) 
 
         #contiene los labels
         self.text_frame = Frame(self.config_graph_frame)
         self.text_frame.pack(side = LEFT)
 
         self.input_frame = Frame(self.config_graph_frame)
-        self.input_frame.config()
         self.input_frame.pack()
+
+        self.graph_frame = Frame(self.root, borderwidth = 2)
+        self.graph_frame.config(bg = "red")
+        self.graph_frame.pack(side=RIGHT,fill =BOTH, expand = True)
+
+        self.lb=Label(self.graph_frame, text ="este es un texto")
+        self.lb.pack()
 
         #-----------------------------------------------------------
 
@@ -80,7 +60,7 @@ class main():
         self.title_label = Label(self.text_frame, text="Title: ")
         self.title_label.pack(pady=5, anchor ="e")
 
-        # title boxe
+        # titulo de la grafica
         self.title = StringVar()
         self.title.set("titulo")
         self.title_box = Entry(self.input_frame,
@@ -88,6 +68,7 @@ class main():
         
         self.title_box.pack(pady=5)
 
+        #nombre del eje y
         self.x_label = Label(self.text_frame, text="X-axis title:")
         self.x_label.pack(pady=5, anchor ="e")
 
@@ -98,9 +79,11 @@ class main():
         self.x_name_box.config( )
         self.x_name_box.pack(pady=5)
 
+        #nombre del eje x
         self.y_label = Label(self.text_frame, text="Y-axis title:")
         self.y_label.pack(pady=5, anchor ="e")
-
+        
+        
         self.y_name = StringVar()
         self.y_name.set("name (units)")
         self.y_name_box = Entry(self.input_frame,
@@ -108,13 +91,15 @@ class main():
         self.y_name_box.config( )
         self.y_name_box.pack(pady=5)
 
+        #nombre de columna
         self.x_name_variable_label = Label(self.text_frame, text="X: ")
         self.x_name_variable_label.pack(pady=5, anchor ="e")
 
         self.x_data = ttk.Combobox(self.input_frame, width=15)
         self.x_data.pack(pady=5)
         self.x_data['values'] = self.title_columns
-
+        
+        #nombre de columna
         self.y_name_variable_label = Label(self.text_frame, text="Y: ")
         self.y_name_variable_label.pack(pady=5, anchor ="e")
 
@@ -122,52 +107,46 @@ class main():
         self.y_data.pack(pady=5)
         self.y_data['values'] = self.title_columns
 
-        '''
-
-            row=0, column=1, sticky='ns')
-
-        self.frame_ecuation = Frame(self.root)
-        self.frame_ecuation.grid(row=0, column=2)
-
-        self.ecuation_label = Label(self.frame_ecuation, text="Equation")
-        self.ecuation_label.grid(row=4, column=0)
+        #ecuacion de la grafica
+        self.ecuation_label = Label(self.text_frame, text="Equation")
+        self.ecuation_label.pack(pady=5, anchor ="e")
 
         self.ecuation = StringVar()
-        self.ecuation.set("")
+        self.ecuation.set("ecuacion")
         self.ecuation_box = Entry(
-            self.frame_ecuation, textvariable=self.ecuation, width=15)
-        self.ecuation_box.config( )
-        self.ecuation_box.grid(row=4, column=1)
+            self.input_frame, textvariable=self.ecuation, width=15)
+        self.ecuation_box.pack(pady=5)
 
-        self.domain_label = Label(self.frame_ecuation, text="Domain a:b")
-        self.domain_label.grid(row=5, column=0, pady=5, padx=5)
+        #dominio de la ecuacion
+        self.domain_label = Label(self.text_frame, text="Domain a:b")
+        self.domain_label.pack(pady=5, anchor ="e")
 
         self.domain = StringVar()
         self.domain.set("")
-        self.domain_box = Entry(self.frame_ecuation,
+        self.domain_box = Entry(self.input_frame,
                                 textvariable=self.domain, width=15)
         self.domain_box.config( )
-        self.domain_box.grid(row=5, column=1, pady=5)
+        self.domain_box.pack(pady=5)
 
-        self.legend_label = Label(self.frame_ecuation, text="Legend")
-        self.legend_label.grid(row=6, column=0)
+        #legenda de la grafica
+        self.legend_label = Label(self.text_frame, text="Legend")
+        self.legend_label.pack(pady=5, anchor ="e")
 
         self.legend_ecuation = StringVar()
         self.legend_ecuation.set("")
         self.legend_ecuation_box = Entry(
-            self.frame_ecuation, textvariable=self.legend_ecuation, width=15)
-        self.legend_ecuation_box.config( )
-        self.legend_ecuation_box.grid(row=6, column=1)
+            self.input_frame, textvariable=self.legend_ecuation, width=15)
+        self.legend_ecuation_box.pack(pady = 5)
 
-        self.color_curve_label = Label(
-            self.frame_ecuation, text="Color de curva: ")
-        self.color_curve_label.grid(row=7, column=0)
+        self.color_curve_label = Label(self.text_frame, text="Color de curva: ")
+        self.color_curve_label.pack(pady=5, anchor ="e")
 
         self.color_curve = "#1F77B4"
         self.color_ecuation_buttom = Button(
-            self.frame_ecuation, bg=self.color_curve, width=1, command=self.select_colour_ecuation)
-        self.color_ecuation_buttom.grid(row=7, column=1, pady=5, sticky="w")
+            self.input_frame, bg=self.color_curve, width=1, command=self.select_colour_ecuation)
+        self.color_ecuation_buttom.pack(pady=5, anchor = "sw")
 
+        '''
         ttk.Separator(self.root, orient=HORIZONTAL).grid(
             row=1, column=1, columnspan=2, sticky='ew')
         '''
@@ -184,7 +163,7 @@ class main():
 								offvalue=False,
 								height=1,
 								width=1)
-        self.grid.pack(pady=5, anchor = "w")
+        self.grid.pack(pady=5, anchor = "sw")
 
         self.color_label = Label(self.text_frame, text="Color Points:")
         self.color_label.pack(pady=5)
@@ -224,10 +203,9 @@ class main():
         self.size_point.pack(pady=5)
 
         # button
-
         self.graph_buttom = Button(
             self.root, text="Graph", command=self.graph)
-        self.graph_buttom.pack(pady=5)
+        self.graph_buttom.pack(pady=5, side = BOTTOM, anchor="w")
 
         self.root.mainloop()
 

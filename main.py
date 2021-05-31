@@ -48,70 +48,82 @@ class main():
         self.bar_menu.add_cascade(label ="Edit" , menu = self.edit_menu)
         self.bar_menu.add_cascade(label ="Plot" , menu = self.graph_prop_menu)
         '''
-        # path label
-        self.data_boxes_labels = Frame(self.root)
-        self.data_boxes_labels.pack()
+        #Contains the graph configuration that user set
+        self.config_graph_frame =Frame(self.root)
+        self.config_graph_frame.pack(pady=5) 
 
-        self.path_label = Label(self.data_boxes_labels, text="File data: ")
-        self.path_label.pack()
-        self.path = StringVar()
-        self.path_box = Entry(self.data_boxes_labels,
-                              textvariable=self.path, width=35)
-        self.path_box.config(justify=CENTER)
-        self.path_box.pack()
-        # Selecti file button
+        #contiene los labels
+        self.text_frame = Frame(self.config_graph_frame)
+        self.text_frame.pack(side = LEFT)
+
+        self.input_frame = Frame(self.config_graph_frame)
+        self.input_frame.config()
+        self.input_frame.pack()
+
+        #-----------------------------------------------------------
+
+        self.path_label = Label(self.text_frame, text="File data: ")
+        self.path_label.pack(pady=5, anchor ="e")
+
         self.search_file_Btn = Button(
-            self.data_boxes_labels, text=". . .", command=self.search_file)
-        self.search_file_Btn.pack()
+            self.input_frame, text=". . .", command=self.search_file)
+        self.search_file_Btn.pack(side = RIGHT, anchor ="n")
 
+        self.path = StringVar()
+        self.path_box = Entry(self.input_frame,
+                              textvariable=self.path, width=15)
+        self.path_box.config( )
+        self.path_box.pack(pady=5)
+        # Selecti file button
+        
         # title
-        self.title_label = Label(self.data_boxes_labels, text="Title: ")
-        self.title_label.pack()
+        self.title_label = Label(self.text_frame, text="Title: ")
+        self.title_label.pack(pady=5, anchor ="e")
 
         # title boxe
         self.title = StringVar()
-        self.title.set("")
-        self.title_box = Entry(self.data_boxes_labels,
-                               textvariable=self.title, width=35)
-        self.title_box.config(justify=CENTER)
-        self.title_box.pack()
+        self.title.set("titulo")
+        self.title_box = Entry(self.input_frame,
+                               textvariable=self.title, width=15)
+        
+        self.title_box.pack(pady=5)
 
-        self.x_label = Label(self.data_boxes_labels, text="X-axis title:")
-        self.x_label.pack()
+        self.x_label = Label(self.text_frame, text="X-axis title:")
+        self.x_label.pack(pady=5, anchor ="e")
 
         self.x_name = StringVar()
         self.x_name.set("name (units)")
-        self.x_name_box = Entry(self.data_boxes_labels,
-                                textvariable=self.x_name, width=35)
-        self.x_name_box.config(justify=CENTER)
-        self.x_name_box.pack()
+        self.x_name_box = Entry(self.input_frame,
+                                textvariable=self.x_name, width=15)
+        self.x_name_box.config( )
+        self.x_name_box.pack(pady=5)
 
-        self.y_label = Label(self.data_boxes_labels, text="Y-axis title:")
-        self.y_label.pack()
+        self.y_label = Label(self.text_frame, text="Y-axis title:")
+        self.y_label.pack(pady=5, anchor ="e")
 
         self.y_name = StringVar()
         self.y_name.set("name (units)")
-        self.y_name_box = Entry(self.data_boxes_labels,
-                                textvariable=self.y_name, width=35)
-        self.y_name_box.config(justify=CENTER)
-        self.y_name_box.pack()
+        self.y_name_box = Entry(self.input_frame,
+                                textvariable=self.y_name, width=15)
+        self.y_name_box.config( )
+        self.y_name_box.pack(pady=5)
 
-        self.x_name_variable_label = Label(self.data_boxes_labels, text="X: ")
-        self.x_name_variable_label.pack()
+        self.x_name_variable_label = Label(self.text_frame, text="X: ")
+        self.x_name_variable_label.pack(pady=5, anchor ="e")
 
-        self.x_data = ttk.Combobox(self.data_boxes_labels, width=32)
-        self.x_data.pack()
+        self.x_data = ttk.Combobox(self.input_frame, width=15)
+        self.x_data.pack(pady=5)
         self.x_data['values'] = self.title_columns
 
-        self.y_name_variable_label = Label(self.data_boxes_labels, text="Y: ")
-        self.y_name_variable_label.pack()
+        self.y_name_variable_label = Label(self.text_frame, text="Y: ")
+        self.y_name_variable_label.pack(pady=5, anchor ="e")
 
-        self.y_data = ttk.Combobox(self.data_boxes_labels, width=32)
-        self.y_data.pack()
+        self.y_data = ttk.Combobox(self.input_frame, width=15)
+        self.y_data.pack(pady=5)
         self.y_data['values'] = self.title_columns
 
         '''
-        ttk.Separator(self.root, orient=VERTICAL).grid(
+
             row=0, column=1, sticky='ns')
 
         self.frame_ecuation = Frame(self.root)
@@ -123,8 +135,8 @@ class main():
         self.ecuation = StringVar()
         self.ecuation.set("")
         self.ecuation_box = Entry(
-            self.frame_ecuation, textvariable=self.ecuation, width=35)
-        self.ecuation_box.config(justify=CENTER)
+            self.frame_ecuation, textvariable=self.ecuation, width=15)
+        self.ecuation_box.config( )
         self.ecuation_box.grid(row=4, column=1)
 
         self.domain_label = Label(self.frame_ecuation, text="Domain a:b")
@@ -133,8 +145,8 @@ class main():
         self.domain = StringVar()
         self.domain.set("")
         self.domain_box = Entry(self.frame_ecuation,
-                                textvariable=self.domain, width=35)
-        self.domain_box.config(justify=CENTER)
+                                textvariable=self.domain, width=15)
+        self.domain_box.config( )
         self.domain_box.grid(row=5, column=1, pady=5)
 
         self.legend_label = Label(self.frame_ecuation, text="Legend")
@@ -143,8 +155,8 @@ class main():
         self.legend_ecuation = StringVar()
         self.legend_ecuation.set("")
         self.legend_ecuation_box = Entry(
-            self.frame_ecuation, textvariable=self.legend_ecuation, width=35)
-        self.legend_ecuation_box.config(justify=CENTER)
+            self.frame_ecuation, textvariable=self.legend_ecuation, width=15)
+        self.legend_ecuation_box.config( )
         self.legend_ecuation_box.grid(row=6, column=1)
 
         self.color_curve_label = Label(
@@ -159,63 +171,63 @@ class main():
         ttk.Separator(self.root, orient=HORIZONTAL).grid(
             row=1, column=1, columnspan=2, sticky='ew')
         '''
+        #contenido del frame de estilos ------------------------------------
+        self.grid_label = Label(self.text_frame, text = "grid")
+        self.grid_label.pack(pady=5, anchor ="e") 
 
-        self.config_graph_frame = Frame(self.root)
-        self.config_graph_frame.pack(side = LEFT)
-
+       
         self.grid_value = BooleanVar()
-        self.grid = Checkbutton(self.config_graph_frame,
-								text="Grid",
+        self.grid = Checkbutton(self.input_frame,
+								text="",
 								variable=self.grid_value,
 								onvalue=True,
 								offvalue=False,
-								height=2,
-								width=10)
-        self.grid.pack()
+								height=1,
+								width=1)
+        self.grid.pack(pady=5, anchor = "w")
 
-        self.color_label = Label(self.config_graph_frame, text="Color Points:")
-        self.color_label.pack()
+        self.color_label = Label(self.text_frame, text="Color Points:")
+        self.color_label.pack(pady=5)
         self.color_points = "#FF0000"
-        self.color_buttom = Button(self.config_graph_frame,
-                                   bg=self.color_points, width=1, command=self.select_colour_points)
-        self.color_buttom.pack()
+        self.color_buttom = Button(self.input_frame,
+                                   bg=self.color_points,width=1, command=self.select_colour_points)
+        self.color_buttom.pack(pady=5, anchor ="w")
 
-        self.marker_label = Label(
-            self.config_graph_frame, text="Marker: ")
-        self.marker_label.pack()
+        self.marker_label = Label(self.text_frame, text="Marker: ")
+        self.marker_label.pack(pady=5, anchor ="e")
 
         self.marker_list = ttk.Combobox(
-            self.config_graph_frame, width=15)
-        self.marker_list.pack()
+            self.input_frame, width=15)
+        self.marker_list.pack(pady=5)
         self.marker_list['values'] = self.marker_style
 
         # Lyne styles
         self.line_style_label = Label(
-            self.config_graph_frame, text="Line Style: ")
-        self.line_style_label.pack()
+            self.text_frame, text="Line Style: ")
+        self.line_style_label.pack(pady=5, anchor ="e")
 
-        self.line_style = ttk.Combobox(self.config_graph_frame, width=15)
-        self.line_style.pack()
+        self.line_style = ttk.Combobox(self.input_frame, width=15)
+        self.line_style.pack(pady=5)
         self.line_style['values'] = self.line_styles
 
         # Size Points
         self.size_label = Label(
-            self.config_graph_frame, text="Points size: ")
-        self.size_label.pack()
+            self.text_frame, text="Points size: ")
+        self.size_label.pack(pady=5, anchor ="e")
         # Caja de entrada para el tamaño de los puntos
         self.size_var = DoubleVar()
         self.size_var.set(5.0)
-        self.size_point = Spinbox(self.config_graph_frame, from_=0.1,
+        self.size_point = Spinbox(self.input_frame, from_=0.1,
                                   increment=0.1, to=5.0, width=7, textvariable=str(self.size_var))
-        self.size_point.config(justify=CENTER)
+        self.size_point.config( )
 
-        self.size_point.pack()
+        self.size_point.pack(pady=5)
 
         # button
 
         self.graph_buttom = Button(
-            self.config_graph_frame, text="Graph", command=self.graph)
-        self.graph_buttom.pack()
+            self.root, text="Graph", command=self.graph)
+        self.graph_buttom.pack(pady=5)
 
         self.root.mainloop()
 

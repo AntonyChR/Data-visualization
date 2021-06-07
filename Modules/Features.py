@@ -31,9 +31,9 @@ marker_style = {
                 "hline"         : "_"
                 } # marker
 line_style ={
-              "solid"               : "solid",
-              "dotted"             : "dotted",
-              "dashed"          : "dashed", 
-              "dashed dotted" : "dashdot"
+              "solid"        : "solid",
+              "dotted"       : "dotted",
+              "dashed"       : "dashed", 
+              "dashed dotted": "dashdot"
             } #plot(..., linestyle = " ")
 

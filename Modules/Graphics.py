@@ -1,89 +1,47 @@
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import Modules.Features as ft
 
 
 class graph():
-#replace this for **kargs
-    def __init__(self, 
-                path,    
-                title, 
-                xtitle,    
-                ytitle,   
-                rej, 
-                col,
-                line_style, 
-                size, 
-                ecuation, 
-                domain, 
-                legend_ec, 
-                color_ec, 
-                title_x, 
-                title_y, 
-                marker_):
-
-        self.path       = path
-        self.title      = title
-        self.xtitle     = xtitle
-        self.ytitle     = ytitle
-        self.rej        = rej
-        self.col        = col
-        self.size       = size
-        self.domain     = domain
-        self.legend_ec  = legend_ec
-        self.color_ec   = color_ec
-        self.ecuation   = ecuation
-        self.title_x    = title_x
-        self.title_y    = title_y
-        self.line_style = "None" if line_style == "" else ft.line_style[line_style]
-        self.marker     = ft.marker_style[marker_] if marker_ != "" else "o"
-        self.font       = {"fontname": "Times New Roman", "size": 14}
-
+    def __init__(self, **kargs):
+        #data: {x:list, y:list}
+        self.args = kargs
+        self.font = {"fontname": "Times New Roman", "size": 14}
         self.x = None
         self.y = None
-
-
-    def get_data(self):
-        if self.path[-1] == "v":
-            data = pd.read_csv(self.path)
-        else:
-            data = pd.read_excel(self.path)
-
-        self.x = list(data[self.title_x])
-        self.y = list(data[self.title_y])
+    
 
     def insert(self):
         functions = ["exp", "ln", "sin", "cos",
                      "tan", "arctan", "arcos", "sec", "arcsin"]
         for fun in functions:
-            i = self.ecuation.find(fun)
+            i = self.args["equation"].find(fun)
             if i != -1:
-                self.ecuation = self.ecuation[:i] + "np." + self.ecuation[i:]
+                self.args["equation"] = self.args["equation"][:i] + "np." + self.args["equation"][i:]
 
     def draw(self):
+        print(self.args)
+        # if self.args["equation"] != "": 
+        #     self.insert()
+        #     if self.args["domain"] != "":
+        #         a, b = self.args["domain"].split(":")
+        #     else:
+        #         a, b = self.x[0], self.x[-1]
 
-        if self.ecuation != "": 
-            self.insert()
-            if self.domain != "":
-                a, b = self.domain.split(":")
-            else:
-                a, b = self.x[0], self.x[-1]
-
-            dom  = np.linspace(float(a), float(b), num = 100)
-            ran  = [eval(self.ecuation) for x in dom]
-            #ran  = list(map(eval(self.ecuation), dom))
-            plt.plot(dom, ran, label=self.legend_ec)
+        #     dom  = np.linspace(float(a), float(b), num = 100)
+        #     ran  = [eval(self.args["equation"]) for x in dom]
+        #     plt.plot(dom, ran,self.args["color_eq"], label=self.args["legend_eq"])
             
+        # print(self.args["marker"])
+        # plt.plot(self.x, self.y, linestyle = self.args["line_style"])   
+        # plt.plot(self.x, self.y, "-o",color = self.args["col"], markersize=self.args["size"])
+        # plt.title(self.args["title"], self.font)
+        # plt.xlabel(self.args["xtitle"], self.font)
+        # plt.ylabel(self.args["ytitle"], self.font)
+        # plt.grid(self.args["grid"])
 
-        plt.plot(self.x, self.y, linestyle = self.line_style)   
-        plt.plot(self.x, self.y, marker = self.marker,linestyle = "None",color = self.col, markersize=self.size)
-        plt.title(self.title, self.font)
-        plt.xlabel(self.xtitle, self.font)
-        plt.ylabel(self.ytitle, self.font)
-        plt.grid(self.rej)
+        # if self.args["legend_eq"] != "":
+        #     plt.legend(loc = "best")
 
-        if self.legend_ec != "":
-            plt.legend(loc = "best")
-
-        plt.show()
+        # plt.show()

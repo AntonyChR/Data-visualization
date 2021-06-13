@@ -10,9 +10,6 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
 NavigationToolbar2Tk)
 
-
-from Modules.Graphics import graph as gr
-# import Modules.Features as ft
 from Modules.Features import marker_style, line_style
 
 from win32api import GetSystemMetrics

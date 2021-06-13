@@ -4,8 +4,9 @@ used with the scatter () and plot () functions
 https://matplotlib.org/stable/api/markers_api.html
 '''
 marker_style = {
-                "pixel"         : "," ,
                 "circle"        : "o" ,
+                "square"        : "s" ,
+                "octagon"       : "8" ,
                 "point"         : "." ,
                 "triangle_down" : "v" ,
                 "triangle_up"   : "^" ,
@@ -15,8 +16,6 @@ marker_style = {
                 "tri_up"        : "2" ,
                 "tri_left"      : "3" ,
                 "tri_right"     : "4" ,
-                "octagon"       : "8" ,
-                "square"        : "s" ,
                 "pentagon"      : "p" ,
                 "plus (filled)" : "P" ,
                 "star"          : "*" ,
@@ -28,7 +27,8 @@ marker_style = {
                 "diamond"       : "D" ,
                 "thin_diamond"  : "d" ,
                 "vline"         : "|" ,
-                "hline"         : "_"
+                "hline"         : "_" ,
+                "pixel"         : "," ,
                 } # marker
 line_style ={
               "solid"        : "solid",

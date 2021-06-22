@@ -19,6 +19,7 @@ class main():
 
         self.y_resolution = GetSystemMetrics(1)
         self.x_resolution = GetSystemMetrics(0)
+
         # var
         self.path_file     = None
         self.data_frame    = None
@@ -51,7 +52,6 @@ class main():
         self.text_frame.pack()
         
         #-----------------------------------------------------------
-
         self.path_label = Label(self.text_frame, text="File data: ")
         self.path_label.pack(pady=5, anchor ="e")
 
@@ -182,7 +182,6 @@ class main():
 				    width=1)
         self.grid.pack(anchor = "sw")
 
-
         # Lyne styles
         self.line_style_label = Label(
             self.text_frame, text="Line Style: ")
@@ -239,7 +238,6 @@ class main():
                 if input_el != self.color_button:
                     input_el.pack(pady = 10)
             self.grid.pack(pady = 1)
-
 
     def import_data(self):
         self.path_file = filedialog.askopenfilename(initialdir="./", title="Select file", 
@@ -298,7 +296,6 @@ class main():
         else:
             a = self.data_frame[f"{self.x_data.get()}"].iloc[0] 
             b = self.data_frame[f"{self.x_data.get()}"].iloc[-1] 
-            print("el numero es: ", b)
 
         X = list(np.linspace(float(a), float(b),num = num_points))
         Y = [eval(exp) for x in X]
